@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+#:nodoc:
 require 'test_helper'
 
 class UserTest < ActiveSupport::TestCase
