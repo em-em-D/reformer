@@ -2,7 +2,7 @@
 
 #:nodoc:
 class UsersController < ApplicationController
-  before_action :set_user, only: %i[show edit update destroy]
+  before_action :set_user, only: %i[edit update destroy]
 
   def index
     @users = User.all
@@ -22,23 +22,18 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user = User.find(params[:id])
   end
 
   def destroy
     @user.destroy
     respond_to do |format|
-      format.html {redirect_to users_url,
-                   notice: 'User was successfully deleted.'}
+      format.html((redirect_to users_url, notice: 'User was successfully deleted.'))
       format.json { head :no_content }
     end
   end
 
   def update
-
-    @user = User.find(params[:id])
-    if @user.update(username: params[:user][:username],
-                    email: params[:user][:email],
+    if @user.update(username: params[:user][:username], email: params[:user][:email],
                     password: params[:user][:password])
       redirect_to edit_user_path(@user)
     else
